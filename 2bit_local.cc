@@ -35,8 +35,8 @@
 
 LocalBP::LocalBP(const LocalBPParams &params)
     : BPredUnit(params),
-      localPredictorSize(params.localPredictorSize),
-      localCtrBits(params.localCtrBits),
+      localPredictorSize(params.localPredictorSize + 512),
+      localCtrBits(params.localCtrBits + 2),
       localPredictorSets(localPredictorSize / localCtrBits),
       localCtrs(localPredictorSets, SatCounter8(localCtrBits)),
       indexMask(localPredictorSets - 1)
