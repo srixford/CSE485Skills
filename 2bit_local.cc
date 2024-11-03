@@ -68,6 +68,11 @@ LocalBP::btbUpdate(ThreadID tid, Addr branch_addr, void * &bp_history)
 }
 
 
+/*
+This lookup function works to things for the branch predictor.
+This is taken from gem5 to use so it is open source.
+etc etc etc.
+*/
 bool
 LocalBP::lookup(ThreadID tid, Addr branch_addr, void * &bp_history)
 {
