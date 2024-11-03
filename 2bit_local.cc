@@ -35,8 +35,8 @@
 
 LocalBP::LocalBP(const LocalBPParams &params)
     : BPredUnit(params),
-      localPredictorSize(params.localPredictorSize),
-      localCtrBits(params.localCtrBits),
+      localPredictorSize(params.localPredictorSize + 512),
+      localCtrBits(params.localCtrBits + 2),
       localPredictorSets(localPredictorSize / localCtrBits),
       localCtrs(localPredictorSets, SatCounter8(localCtrBits)),
       indexMask(localPredictorSets - 1)
@@ -68,6 +68,11 @@ LocalBP::btbUpdate(ThreadID tid, Addr branch_addr, void * &bp_history)
 }
 
 
+/*
+This lookup function works to things for the branch predictor.
+This is taken from gem5 to use so it is open source.
+etc etc etc.
+*/
 bool
 LocalBP::lookup(ThreadID tid, Addr branch_addr, void * &bp_history)
 {
